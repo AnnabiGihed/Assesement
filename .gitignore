@@ -364,3 +364,5 @@ FodyWeavers.xsd
 /Assesement.Persistence/Migrations/20230902080401_V1.Designer.cs
 /Assesement.Persistence/Migrations/20230902080401_V1.cs
 /Assesement.Persistence/Migrations/ApplicationDbContextModelSnapshot.cs
+/Assesement.Persistence/Migrations/20230903030227_v1.cs
+/Assesement.Persistence/Migrations/20230903030227_v1.Designer.cs
