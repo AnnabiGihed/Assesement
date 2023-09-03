@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Assesement.Domain.Common.Interfaces;
+using Assessment.Domain.Common.Interfaces;
 
-namespace Assesement.Domain.Common
+namespace Assessment.Domain.Common
 {
 	public class DomainEventDispatcher : IDomainEventDispatcher
 	{

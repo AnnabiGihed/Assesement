@@ -1,4 +1,4 @@
-﻿namespace Assesement.Shared
+﻿namespace Assessment.Shared
 {
 	public class PaginatedResult<T> : Result<T>
 	{

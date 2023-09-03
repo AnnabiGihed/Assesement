@@ -1,11 +1,11 @@
-﻿using Assesement.Shared.Interfaces;
+﻿using Assessment.Shared.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assesement.Shared
+namespace Assessment.Shared
 {
 	public class Result<T> : IResult<T>
 	{

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Assesement.Application.Common.Mappings
+namespace Assessment.Application.Common.Mappings
 {
 	public interface IMapFrom<T>
 	{

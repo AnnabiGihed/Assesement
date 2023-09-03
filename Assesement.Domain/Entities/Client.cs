@@ -1,6 +1,6 @@
-﻿using Assesement.Domain.Common;
+﻿using Assessment.Domain.Common;
 
-namespace Assesement.Domain.Entities
+namespace Assessment.Domain.Entities
 {
 	public class Client : BaseAuditableEntity
 	{

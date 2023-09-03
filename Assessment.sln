@@ -5,19 +5,23 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{760D8FC2-1C44-44F8-B97C-C042DBDDF6A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assesement.Shared", "Assesement.Shared\Assesement.Shared.csproj", "{E5FA7CE7-CF00-4EA9-8E12-DB96DCFEB586}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assessment.Shared", "Assesement.Shared\Assessment.Shared.csproj", "{E5FA7CE7-CF00-4EA9-8E12-DB96DCFEB586}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assesement.Domain", "Assesement.Domain\Assesement.Domain.csproj", "{3C09A57D-1928-48B9-B778-F090D4B7637E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assessment.Domain", "Assesement.Domain\Assessment.Domain.csproj", "{3C09A57D-1928-48B9-B778-F090D4B7637E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{377CD0A5-C7C5-4417-AF49-66383E0F18E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assesement.Application", "Assesement.Application\Assesement.Application.csproj", "{0AA63ED2-90D7-4D84-A1F2-73B32799A17B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assessment.Application", "Assesement.Application\Assessment.Application.csproj", "{0AA63ED2-90D7-4D84-A1F2-73B32799A17B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{5B7073BD-5718-43E0-9694-F8770DFEE4A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assesement.Persistence", "Assesement.Persistence\Assesement.Persistence.csproj", "{3DFA4D7C-E9F0-4803-A58C-C2C817CD6E83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assessment.Persistence", "Assesement.Persistence\Assessment.Persistence.csproj", "{3DFA4D7C-E9F0-4803-A58C-C2C817CD6E83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assesemenet.Infrastructure", "Assesemenet.Infrastructure\Assesemenet.Infrastructure.csproj", "{461F86CC-6CCF-40C6-AA2D-1DDB9DDE2C9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assessment.Infrastructure", "Assesemenet.Infrastructure\Assessment.Infrastructure.csproj", "{461F86CC-6CCF-40C6-AA2D-1DDB9DDE2C9E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{CBACE176-AF28-4E79-8ED9-95E6A7B7A0AE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assessment.WebApi", "Assessment.WebApi\Assessment.WebApi.csproj", "{568F44FE-657F-4AEF-BAFA-0F1D30BB0589}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,10 @@ Global
 		{461F86CC-6CCF-40C6-AA2D-1DDB9DDE2C9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{461F86CC-6CCF-40C6-AA2D-1DDB9DDE2C9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{461F86CC-6CCF-40C6-AA2D-1DDB9DDE2C9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{568F44FE-657F-4AEF-BAFA-0F1D30BB0589}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{568F44FE-657F-4AEF-BAFA-0F1D30BB0589}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{568F44FE-657F-4AEF-BAFA-0F1D30BB0589}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{568F44FE-657F-4AEF-BAFA-0F1D30BB0589}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +63,7 @@ Global
 		{0AA63ED2-90D7-4D84-A1F2-73B32799A17B} = {377CD0A5-C7C5-4417-AF49-66383E0F18E0}
 		{3DFA4D7C-E9F0-4803-A58C-C2C817CD6E83} = {5B7073BD-5718-43E0-9694-F8770DFEE4A4}
 		{461F86CC-6CCF-40C6-AA2D-1DDB9DDE2C9E} = {5B7073BD-5718-43E0-9694-F8770DFEE4A4}
+		{568F44FE-657F-4AEF-BAFA-0F1D30BB0589} = {CBACE176-AF28-4E79-8ED9-95E6A7B7A0AE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {912531B9-2D15-4D40-ABFF-AA93D6C80F6E}

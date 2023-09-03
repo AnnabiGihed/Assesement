@@ -1,10 +1,10 @@
 ﻿using System.Reflection;
-using Assesement.Domain.Common;
-using Assesement.Domain.Entities;
+using Assessment.Domain.Common;
+using Assessment.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using Assesement.Domain.Common.Interfaces;
+using Assessment.Domain.Common.Interfaces;
 
-namespace Assesement.Persistence.Contexts
+namespace Assessment.Persistence.Contexts
 {
 	public class ApplicationDbContext : DbContext
 	{
@@ -285,6 +285,22 @@ namespace Assesement.Persistence.Contexts
 
 		public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
 		{
+			var entries = ChangeTracker
+				.Entries()
+				.Where(e => e.Entity is BaseEntity && (
+						e.State == EntityState.Added
+						|| e.State == EntityState.Modified));
+
+			foreach (var entityEntry in entries)
+			{
+				((BaseAuditableEntity)entityEntry.Entity).UpdatedDate = DateTime.Now;
+
+				if (entityEntry.State == EntityState.Added)
+				{
+					((BaseAuditableEntity)entityEntry.Entity).CreatedDate = DateTime.Now;
+				}
+			}
+
 			int result = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
 			// ignore events if no dispatcher provided

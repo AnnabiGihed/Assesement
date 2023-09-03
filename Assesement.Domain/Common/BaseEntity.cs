@@ -1,7 +1,7 @@
-﻿using Assesement.Domain.Common.Interfaces;
+﻿using Assessment.Domain.Common.Interfaces;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Assesement.Domain.Common
+namespace Assessment.Domain.Common
 {
 	public abstract class BaseEntity : IEntity
 	{

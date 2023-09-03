@@ -1,15 +1,17 @@
-﻿using FluentValidation;
+﻿
+using FluentValidation;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
+using MediatR;
 
-namespace Assesement.Application.Extensions
+namespace Assessment.Application.Extensions
 {
 	public static class IServiceCollectionExtensions
 	{
 		public static void AddApplicationLayer(this IServiceCollection services)
 		{
-			services.AddMediator();
 			services.AddAutoMapper();
+			services.AddMediator();
 			services.AddValidators();
 		}
 

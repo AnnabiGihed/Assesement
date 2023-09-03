@@ -1,4 +1,4 @@
-﻿namespace Assesement.Application.Common.Exceptions
+﻿namespace Assessment.Application.Common.Exceptions
 {
 	public class NotFoundException : Exception
 	{

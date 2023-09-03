@@ -1,4 +1,4 @@
-﻿namespace Assesement.Application.Interfaces.Repositories
+﻿namespace Assessment.Application.Interfaces.Repositories
 {
 	public interface IWholesalerSaleRepository
 	{

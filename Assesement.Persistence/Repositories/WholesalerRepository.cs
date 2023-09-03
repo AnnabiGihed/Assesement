@@ -1,7 +1,7 @@
-﻿using Assesement.Domain.Entities;
-using Assesement.Application.Interfaces.Repositories;
+﻿using Assessment.Domain.Entities;
+using Assessment.Application.Interfaces.Repositories;
 
-namespace Assesement.Persistence.Repositories
+namespace Assessment.Persistence.Repositories
 {
 	public class WholesalerRepository : IWholesalerRepository
 	{

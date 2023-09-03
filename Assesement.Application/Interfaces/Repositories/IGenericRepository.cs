@@ -1,6 +1,7 @@
-﻿using Assesement.Domain.Common.Interfaces;
+﻿using Assessment.Domain.Common.Interfaces;
+using Microsoft.EntityFrameworkCore.Query;
 
-namespace Assesement.Application.Interfaces.Repositories
+namespace Assessment.Application.Interfaces.Repositories
 {
 	public interface IGenericRepository<T> where T : class, IEntity
 	{
@@ -10,5 +11,6 @@ namespace Assesement.Application.Interfaces.Repositories
 		Task<T> AddAsync(T entity);
 		Task UpdateAsync(T entity);
 		Task DeleteAsync(T entity);
+		Task<List<T>> GetWithInclude(Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
 	}
 }

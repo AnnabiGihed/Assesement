@@ -1,6 +1,6 @@
-﻿using Assesement.Application.Interfaces;
+﻿using Assessment.Application.Interfaces;
 
-namespace Assesemenet.Infrastructure.Services
+namespace Assessment.Infrastructure.Services
 {
 	public class DateTimeService : IDateTimeService
 	{

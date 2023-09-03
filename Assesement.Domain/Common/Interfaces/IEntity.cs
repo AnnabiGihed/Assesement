@@ -1,4 +1,4 @@
-﻿namespace Assesement.Domain.Common.Interfaces
+﻿namespace Assessment.Domain.Common.Interfaces
 {
 	public interface IEntity
 	{

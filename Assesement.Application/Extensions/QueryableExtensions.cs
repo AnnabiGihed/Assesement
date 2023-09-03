@@ -1,7 +1,7 @@
-﻿using Assesement.Shared;
+﻿using Assessment.Shared;
 using Microsoft.EntityFrameworkCore;
 
-namespace Assesement.Application.Extensions
+namespace Assessment.Application.Extensions
 {
 	public static class QueryableExtensions
 	{

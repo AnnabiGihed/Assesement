@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Assesement.Persistence.Contexts;
+using Assessment.Persistence.Contexts;
 using Microsoft.Extensions.Configuration;
-using Assesement.Persistence.Repositories;
+using Assessment.Persistence.Repositories;
 using Microsoft.Extensions.DependencyInjection;
-using Assesement.Application.Interfaces.Repositories;
+using Assessment.Application.Interfaces.Repositories;
 
-namespace Assesement.Persistence.Extensions
+namespace Assessment.Persistence.Extensions
 {
 	public static class IServiceCollectionExtensions
 	{

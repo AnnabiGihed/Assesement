@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -12,8 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Assesement.Application\Assesement.Application.csproj" />
-    <ProjectReference Include="..\Assesement.Domain\Assesement.Domain.csproj" />
+    <ProjectReference Include="..\Assesement.Application\Assessment.Application.csproj" />
   </ItemGroup>
 
 </Project>

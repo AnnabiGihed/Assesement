@@ -1,6 +1,6 @@
-﻿using Assesement.Domain.Common;
+﻿using Assessment.Domain.Common;
 
-namespace Assesement.Application.Interfaces.Repositories
+namespace Assessment.Application.Interfaces.Repositories
 {
 	public interface IUnitOfWork : IDisposable
 	{

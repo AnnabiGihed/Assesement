@@ -1,4 +1,4 @@
-﻿namespace Assesement.Shared.Interfaces
+﻿namespace Assessment.Shared.Interfaces
 {
 	public interface IResult<T>
 	{

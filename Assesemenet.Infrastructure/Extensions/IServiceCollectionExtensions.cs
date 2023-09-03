@@ -1,11 +1,11 @@
-﻿using MediatR;
-using Assesement.Domain.Common;
-using Assesement.Application.Interfaces;
-using Assesement.Domain.Common.Interfaces;
-using Assesemenet.Infrastructure.Services;
+﻿using Assessment.Domain.Common;
+using Assessment.Application.Interfaces;
+using Assessment.Domain.Common.Interfaces;
+using Assessment.Infrastructure.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Assesemenet.Infrastructure.Extensions
+using MediatR;
+namespace Assessment.Infrastructure.Extensions
 {
 	public static class IServiceCollectionExtensions
 	{
@@ -18,8 +18,9 @@ namespace Assesemenet.Infrastructure.Extensions
 		{
 			services
 				.AddTransient<IMediator, Mediator>()
-				.AddTransient<IDateTimeService, DateTimeService>()
-				.AddTransient<IDomainEventDispatcher, DomainEventDispatcher>();
+				.AddTransient<IDomainEventDispatcher, DomainEventDispatcher>()
+				.AddTransient<IDateTimeService, DateTimeService>();
+
 		}
 	}
 }

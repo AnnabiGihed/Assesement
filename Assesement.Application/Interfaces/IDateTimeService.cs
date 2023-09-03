@@ -1,4 +1,4 @@
-﻿namespace Assesement.Application.Interfaces
+﻿namespace Assessment.Application.Interfaces
 {
 	public interface IDateTimeService
 	{

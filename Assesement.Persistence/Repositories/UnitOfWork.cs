@@ -1,9 +1,9 @@
 ﻿using System.Collections;
-using Assesement.Domain.Common;
-using Assesement.Persistence.Contexts;
-using Assesement.Application.Interfaces.Repositories;
+using Assessment.Domain.Common;
+using Assessment.Persistence.Contexts;
+using Assessment.Application.Interfaces.Repositories;
 
-namespace Assesement.Persistence.Repositories
+namespace Assessment.Persistence.Repositories
 {
 	public class UnitOfWork : IUnitOfWork
 	{

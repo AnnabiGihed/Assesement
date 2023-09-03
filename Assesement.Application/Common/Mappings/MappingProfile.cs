@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using System.Reflection;
 
-namespace Assesement.Application.Common.Mappings
+namespace Assessment.Application.Common.Mappings
 {
 	public class MappingProfile : Profile
 	{

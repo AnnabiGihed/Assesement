@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -16,8 +16,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Assesement.Domain\Assesement.Domain.csproj" />
-    <ProjectReference Include="..\Assesement.Shared\Assesement.Shared.csproj" />
+    <ProjectReference Include="..\Assesement.Domain\Assessment.Domain.csproj" />
+    <ProjectReference Include="..\Assesement.Shared\Assessment.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>Assessment.UnitTesting</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Beers\Queries\" />
+    <Folder Include="Features\BreweryStocks\Queries\" />
+  </ItemGroup>
 </Project>

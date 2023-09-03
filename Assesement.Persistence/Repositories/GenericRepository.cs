@@ -1,9 +1,10 @@
-﻿using Assesement.Domain.Common;
+﻿using Assessment.Domain.Common;
 using Microsoft.EntityFrameworkCore;
-using Assesement.Persistence.Contexts;
-using Assesement.Application.Interfaces.Repositories;
+using Assessment.Persistence.Contexts;
+using Assessment.Application.Interfaces.Repositories;
+using Microsoft.EntityFrameworkCore.Query;
 
-namespace Assesement.Persistence.Repositories
+namespace Assessment.Persistence.Repositories
 {
 	public class GenericRepository<T> : IGenericRepository<T> where T : BaseAuditableEntity
 	{
@@ -45,6 +46,16 @@ namespace Assesement.Persistence.Repositories
 		public async Task<T> GetByIdAsync(int id)
 		{
 			return await _dbContext.Set<T>().FindAsync(id);
+		}
+
+		public Task<List<T>> GetWithInclude(Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
+		{
+			var result = _dbContext.Set<T>().AsQueryable();
+
+			if (include != null)
+				result = include(result);
+
+			return result.ToListAsync();
 		}
 	}
 }
