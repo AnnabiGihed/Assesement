@@ -1,8 +1,6 @@
 ﻿using MediatR;
 using AutoMapper;
 using Assessment.Shared;
-using Assessment.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
 using Assessment.Application.Interfaces.Repositories;
 
 namespace Assessment.Application.Features.Breweries.Queries.GetAllBreweriesAndTheirBeers
@@ -12,13 +10,11 @@ namespace Assessment.Application.Features.Breweries.Queries.GetAllBreweriesAndTh
 	internal class GetAllBreweriesAndTheirBeersQueryHandler : IRequestHandler<GetAllBreweriesAndTheirBeersQuery, Result<List<GetAllBreweriesAndTheirBeersDto>>>
 	{
 		private readonly IMapper _mapper;
-		private readonly IUnitOfWork _unitOfWork;
 		private readonly IBreweryRepository _breweryRepository;
 
-		public GetAllBreweriesAndTheirBeersQueryHandler(IUnitOfWork unitOfWork, IBreweryRepository breweryRepository, IMapper mapper)
+		public GetAllBreweriesAndTheirBeersQueryHandler(IBreweryRepository breweryRepository, IMapper mapper)
 		{
 			_mapper = mapper;
-			_unitOfWork = unitOfWork;
 			_breweryRepository = breweryRepository;
 		}
 

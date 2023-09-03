@@ -19,10 +19,5 @@ namespace Assessment.Persistence.Repositories
 				.Include(br => br.Stocks)
 					.ThenInclude(s => s.Beer));
 		}
-
-		public async Task<Brewery> GetBreweryByNameAsync(string name)
-		{
-			return await _repository.Entities.FirstOrDefaultAsync(x => x.Name.ToLower() == name.ToLower());
-		}
 	}
 }

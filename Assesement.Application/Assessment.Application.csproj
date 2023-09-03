@@ -25,10 +25,4 @@
       <_Parameter1>Assessment.UnitTesting</_Parameter1>
     </AssemblyAttribute>
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Features\Beers\Queries\" />
-    <Folder Include="Features\Transations\Queries\" />
-    <Folder Include="Features\WholesalerSales\Queries\" />
-  </ItemGroup>
 </Project>

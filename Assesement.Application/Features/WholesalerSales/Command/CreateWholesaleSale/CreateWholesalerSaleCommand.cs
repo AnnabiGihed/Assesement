@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using AutoMapper;
 using Assessment.Shared;
 using Assessment.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -30,12 +29,10 @@ namespace Assessment.Application.Features.WholesalerSales.Command.CreateWholesal
 	internal class CreateWholesalerSaleCommandHandler : IRequestHandler<CreateWholesalerSaleCommand, Result<CreateWholesalerSaleDto>>
 	{
 		private readonly IUnitOfWork _unitOfWork;
-		private readonly IMapper _mapper;
 		
-		public CreateWholesalerSaleCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+		public CreateWholesalerSaleCommandHandler(IUnitOfWork unitOfWork)
 		{
 			_unitOfWork = unitOfWork;
-			_mapper = mapper;
 		}
 
 		public async Task<Result<CreateWholesalerSaleDto>> Handle(CreateWholesalerSaleCommand command, CancellationToken cancellationToken)
@@ -100,7 +97,8 @@ namespace Assessment.Application.Features.WholesalerSales.Command.CreateWholesal
 			}
 			#endregion
 
-			if(!command.IsQuote)
+			//If It is not a Quote apply changes to the database
+			if (!command.IsQuote)
 			{
 				int NewId = 0;
 				var res = await _unitOfWork.Repository<WholesalerSale>().Entities.CountAsync();
@@ -121,7 +119,6 @@ namespace Assessment.Application.Features.WholesalerSales.Command.CreateWholesal
 
 				await _unitOfWork.Save(cancellationToken);
 			}
-
 
 			return await Result<CreateWholesalerSaleDto>.SuccessAsync(SalesDto, "Wholesaler Sale Created.");
 		}

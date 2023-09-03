@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using AutoMapper;
 using Assessment.Shared;
 using Assessment.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
@@ -30,33 +29,33 @@ namespace Assessment.Application.Features.Beers.Command.UpdateBeer
 	internal class UpdateBeerCommandHandler : IRequestHandler<UpdateBeerCommand, Result<int>>
 	{
 		private readonly IUnitOfWork _unitOfWork;
-		private readonly IMapper _mapper;
 
-		public UpdateBeerCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+		public UpdateBeerCommandHandler(IUnitOfWork unitOfWork)
 		{
 			_unitOfWork = unitOfWork;
-			_mapper = mapper;
 		}
 
 		public async Task<Result<int>> Handle(UpdateBeerCommand command, CancellationToken cancellationToken)
 		{
-			var beer = await _unitOfWork.Repository<Beer>().GetByIdAsync(command.Id);
-			if (beer != null)
-			{
-				beer.Name = command.Name;
-				beer.Price = command.Price;
-				beer.BreweryStockId = command.BreweryStockId;
-				beer.AlchoholPercentage = command.AlchoholPercentage;
-				
+			//Check if beer exist
+			var Beer = await _unitOfWork.Repository<Beer>().GetByIdAsync(command.Id);
 
-				await _unitOfWork.Repository<Beer>().UpdateAsync(beer);
-				beer.AddDomainEvent(new BeerUpdatedEvent(beer));
+			//Does Exist, Update it
+			if (Beer != null)
+			{
+				Beer.Name = command.Name;
+				Beer.Price = command.Price;
+				Beer.BreweryStockId = command.BreweryStockId;
+				Beer.AlchoholPercentage = command.AlchoholPercentage;
+				
+				await _unitOfWork.Repository<Beer>().UpdateAsync(Beer);
+				Beer.AddDomainEvent(new BeerUpdatedEvent(Beer));
 
 				await _unitOfWork.Save(cancellationToken);
 
-				return await Result<int>.SuccessAsync(beer.Id, "Beer Updated.");
+				return await Result<int>.SuccessAsync(Beer.Id, "Beer Updated.");
 			}
-			else
+			else //Doesn't Exist, Update failed
 			{
 				return await Result<int>.FailureAsync("Beer Not Found.");
 			}

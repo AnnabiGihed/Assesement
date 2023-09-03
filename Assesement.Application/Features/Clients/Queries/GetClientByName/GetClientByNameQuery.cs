@@ -16,21 +16,21 @@ namespace Assessment.Application.Features.Clients.Queries.GetClientByName
 	{
 		private readonly IMapper _mapper;
 		private readonly IUnitOfWork _unitOfWork;
-		private readonly IClientRepository _clientRepository;
 
-		public GetClientByNameQueryHandler(IUnitOfWork unitOfWork, IClientRepository clientRepository, IMapper mapper)
+		public GetClientByNameQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
 		{
 			_mapper = mapper;
 			_unitOfWork = unitOfWork;
-			_clientRepository = clientRepository;
 		}
 
 		public async Task<Result<GetClientByNameDto>> Handle(GetClientByNameQuery query, CancellationToken cancellationToken)
 		{
+			#region Check if Client Exist
 			var Client = await _unitOfWork.Repository<Client>().Entities.FirstOrDefaultAsync(x => x.Name.ToLower() == query.ClientName.ToLower());
 
 			if (Client == null)
 				return await Result<GetClientByNameDto>.FailureAsync("Client Not Found.");
+			#endregion
 
 			var ClientDto = _mapper.Map<GetClientByNameDto>(Client);
 

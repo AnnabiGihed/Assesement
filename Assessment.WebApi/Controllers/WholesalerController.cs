@@ -1,12 +1,9 @@
 ﻿using MediatR;
 using Assessment.Shared;
 using Microsoft.AspNetCore.Mvc;
+using Assessment.Application.Features.WholesalerSales.Command.CreateWholesaleSale;
 using Assessment.Application.Features.WholesalerStocks.Queries.GetWholerStockByBeer;
 using Assessment.Application.Features.WholesalerStocks.Command.UpdateWholesalerStock;
-using Assessment.Application.Features.WholesalerSales.Command.CreateWholesaleSale;
-using System.Collections.Generic;
-using Assessment.Domain.Entities;
-using Assessment.Application.Features.WholesalerStocks.Queries.GetWholesalerStockByBeerDetailed;
 
 namespace Assessment.WebApi.Controllers
 {

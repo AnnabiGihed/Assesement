@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using AutoMapper;
 using Assessment.Shared;
 using Assessment.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
@@ -18,12 +17,10 @@ namespace Assessment.Application.Features.Clients.Command.CreateClient
 	internal class CreateClientCommandHandler : IRequestHandler<CreateClientCommand, Result<int>>
 	{
 		private readonly IUnitOfWork _unitOfWork;
-		private readonly IMapper _mapper;
 
-		public CreateClientCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+		public CreateClientCommandHandler(IUnitOfWork unitOfWork)
 		{
 			_unitOfWork = unitOfWork;
-			_mapper = mapper;
 		}
 
 		public async Task<Result<int>> Handle(CreateClientCommand command, CancellationToken cancellationToken)
