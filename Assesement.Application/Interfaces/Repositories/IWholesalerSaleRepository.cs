@@ -2,5 +2,6 @@
 {
 	public interface IWholesalerSaleRepository
 	{
+		Task<int> GetLastUsedIndex();
 	}
 }

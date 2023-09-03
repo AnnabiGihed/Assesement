@@ -17,37 +17,45 @@ namespace Assessment.Persistence.Repositories
 		}
 
 		public IQueryable<T> Entities => _dbContext.Set<T>();
-
-		public async Task<T> AddAsync(T entity)
-		{
-			await _dbContext.Set<T>().AddAsync(entity);
-			return entity;
-		}
-
 		public Task UpdateAsync(T entity)
 		{
 			_dbContext.Update(entity);
 			return Task.CompletedTask;
 		}
-
 		public Task DeleteAsync(T entity)
 		{
 			_dbContext.Set<T>().Remove(entity);
 			return Task.CompletedTask;
 		}
-
+		public async Task<T> AddAsync(T entity)
+		{
+			await _dbContext.Set<T>().AddAsync(entity);
+			return entity;
+		}
 		public async Task<List<T>> GetAllAsync()
 		{
 			return await _dbContext
 				.Set<T>()
 				.ToListAsync();
 		}
-
 		public async Task<T> GetByIdAsync(int id)
 		{
 			return await _dbContext.Set<T>().FindAsync(id);
 		}
-
+		public Task UpdateRangeAsync(IList<T> entities)
+		{
+			_dbContext.UpdateRange(entities);
+			return Task.CompletedTask;
+		}
+		public async Task<IList<T>> AddRangeAsync(IList<T> entities)
+		{
+			await _dbContext.Set<T>().AddRangeAsync(entities);
+			return entities;
+		}
+		public async Task<List<T>> FindByCondition(Expression<Func<T, bool>> expression)
+		{
+			return await _dbContext.Set<T>().Where(expression).ToListAsync();
+		}
 		public Task<List<T>> GetWithInclude(Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
 		{
 			var result = _dbContext.Set<T>().AsQueryable();
@@ -56,11 +64,6 @@ namespace Assessment.Persistence.Repositories
 				result = include(result);
 
 			return result.ToListAsync();
-		}
-
-		public async Task<List<T>> FindByCondition(Expression<Func<T, bool>> expression)
-		{
-			return await _dbContext.Set<T>().Where(expression).ToListAsync();
 		}
 	}
 }

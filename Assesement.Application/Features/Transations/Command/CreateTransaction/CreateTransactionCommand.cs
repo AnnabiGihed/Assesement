@@ -3,17 +3,33 @@ using AutoMapper;
 using Assessment.Shared;
 using Assessment.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using Assessment.Application.Common.Mappings;
 using Assessment.Application.Interfaces.Repositories;
+
 
 namespace Assessment.Application.Features.Transations.Command.CreateTransaction
 {
 	public record CreateTransactionCommand : IRequest<Result<int>>, IMapFrom<Transaction>
 	{
-        public int Quantity { get; set; }
-        public string BeerName { get; set; }
-        public string BreweryName { get; set; }
-        public string WholesalerName { get; set; }
+		[Required(ErrorMessage = "Quantity is required")]
+		[Range(1, int.MaxValue, ErrorMessage = "Quantity must be greater than 0")]
+		public int Quantity { get; set; }
+
+		[DataType(DataType.Text)]
+		[Required(ErrorMessage = "Beer Name is required")]
+		[StringLength(255, ErrorMessage = "Beer Name Must be between 2 and 255 characters.", MinimumLength = 2)]
+		public string BeerName { get; set; }
+
+		[DataType(DataType.Text)]
+		[Required(ErrorMessage = "Brewery Name is required")]
+		[StringLength(255, ErrorMessage = "Brewery Name Must be between 2 and 255 characters.", MinimumLength = 2)]
+		public string BreweryName { get; set; }
+
+		[DataType(DataType.Text)]
+		[Required(ErrorMessage = "Wholesaler Name is required")]
+		[StringLength(255, ErrorMessage = "Wholesaler Name Must be between 2 and 255 characters.", MinimumLength = 2)]
+		public string WholesalerName { get; set; }
     }
 
 	internal class CreateTransactionCommandHandler : IRequestHandler<CreateTransactionCommand, Result<int>>

@@ -29,5 +29,6 @@
   <ItemGroup>
     <Folder Include="Features\Beers\Queries\" />
     <Folder Include="Features\Transations\Queries\" />
+    <Folder Include="Features\WholesalerSales\Queries\" />
   </ItemGroup>
 </Project>

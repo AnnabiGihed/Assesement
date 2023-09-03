@@ -220,8 +220,9 @@ namespace Assessment.Persistence.Contexts
 
 			#region Client Entities Configuration
 			modelBuilder.Entity<Client>().ToTable("Client");
-			modelBuilder.Entity<Client>().HasKey(br => br.Id);
-			modelBuilder.Entity<Client>().HasAlternateKey(br => br.Name);
+			modelBuilder.Entity<Client>().HasKey(c => c.Id);
+			modelBuilder.Entity<Client>().HasAlternateKey(c => c.Name);
+			modelBuilder.Entity<Client>().Property(c => c.Id).ValueGeneratedOnAdd();
 			#endregion
 
 			#region Brewery Entities Configuration
@@ -229,6 +230,7 @@ namespace Assessment.Persistence.Contexts
 			modelBuilder.Entity<Brewery>().ToTable("Brewery");
 			modelBuilder.Entity<Brewery>().HasKey(br => br.Id);
 			modelBuilder.Entity<Brewery>().HasAlternateKey(br => br.Name);
+			modelBuilder.Entity<Brewery>().Property(br => br.Id).ValueGeneratedOnAdd();
 			modelBuilder.Entity<Brewery>().HasMany(br => br.Sales).WithOne(b => b.Brewery);
 			modelBuilder.Entity<Brewery>().HasMany(br => br.Stocks).WithOne(wss => wss.Brewery);
 			#endregion
@@ -237,35 +239,40 @@ namespace Assessment.Persistence.Contexts
 			modelBuilder.Entity<Beer>().ToTable("Beer");
 			modelBuilder.Entity<Beer>().HasKey(b => new { b.Id });
 			modelBuilder.Entity<Beer>().HasAlternateKey(br => br.Name);
+			modelBuilder.Entity<Beer>().Property(b => b.Id).ValueGeneratedOnAdd();
 			modelBuilder.Entity<Beer>().HasOne(b => b.BreweryStock).WithOne(br => br.Beer).HasForeignKey<BreweryStock>(b => b.BeerId);
 			#endregion
 
 			#region Brewery Stock Entity Configuration
 			modelBuilder.Entity<BreweryStock>().ToTable("BreweryStock");
-			modelBuilder.Entity<BreweryStock>().HasKey(bs => new { bs.Id, bs.BeerId, bs.BreweryId });
+			modelBuilder.Entity<BreweryStock>().Property(br => br.Id).ValueGeneratedOnAdd();
 			modelBuilder.Entity<BreweryStock>().HasOne(bs => bs.Brewery).WithMany(ws => ws.Stocks);
 			modelBuilder.Entity<BreweryStock>().HasOne(bs => bs.Beer).WithOne(ws => ws.BreweryStock);
+			modelBuilder.Entity<BreweryStock>().HasKey(bs => new { bs.Id, bs.BeerId, bs.BreweryId });
 			#endregion
 
 			#region Transaction Entity Configuration
 			modelBuilder.Entity<Transaction>().ToTable("Transaction");
-			modelBuilder.Entity<Transaction>().HasKey(t => new { t.Id, t.BeerId, t.BreweryId, t.WholesalerId });
+			modelBuilder.Entity<Transaction>().Property(t => t.Id).ValueGeneratedOnAdd();
 			modelBuilder.Entity<Transaction>().HasOne(t => t.Brewery).WithMany(b => b.Sales);
 			modelBuilder.Entity<Transaction>().HasOne(t => t.WholeSaler).WithMany(b => b.Purchase);
+			modelBuilder.Entity<Transaction>().HasKey(t => new { t.Id, t.BeerId, t.BreweryId, t.WholesalerId });
 			#endregion
 			#endregion
 
 			#region Wholesaler Entities Configuration
 			#region Wholesaler Entity Configuration
-			modelBuilder.Entity<Wholesaler>().ToTable("Wholesaler");
 			modelBuilder.Entity<Wholesaler>().HasKey(ws => ws.Id);
+			modelBuilder.Entity<Wholesaler>().ToTable("Wholesaler");
 			modelBuilder.Entity<Wholesaler>().HasAlternateKey(br => br.Name);
+			modelBuilder.Entity<Wholesaler>().Property(ws => ws.Id).ValueGeneratedOnAdd();
 			modelBuilder.Entity<Wholesaler>().HasMany(ws => ws.Purchase).WithOne(b => b.WholeSaler);
 			modelBuilder.Entity<Wholesaler>().HasMany(ws => ws.Stocks).WithOne(wss => wss.Wholesaler);
 			#endregion
 
 			#region Wholesaler Stock Entity Configuration
 			modelBuilder.Entity<WholesalerStock>().ToTable("WholesalerStock");
+			modelBuilder.Entity<WholesalerStock>().Property(wss => wss.Id).ValueGeneratedOnAdd();
 			modelBuilder.Entity<WholesalerStock>().HasKey(wss => new { wss.Id, wss.WholesalerId });
 			modelBuilder.Entity<WholesalerStock>().HasOne(wss => wss.Beer).WithMany(ws => ws.Stocks);
 			modelBuilder.Entity<WholesalerStock>().HasOne(wss => wss.Wholesaler).WithMany(ws => ws.Stocks);
@@ -273,10 +280,10 @@ namespace Assessment.Persistence.Contexts
 
 			#region Wholesaler Sales Entity Configuration
 			modelBuilder.Entity<WholesalerSale>().ToTable("WholesalerSales");
-			modelBuilder.Entity<WholesalerSale>().HasKey(wss => new { wss.Id, wss.WholesalerId, wss.BeerId, wss.ClientId });
-			modelBuilder.Entity<WholesalerSale>().HasOne(wss => wss.SoldBeer).WithMany(ws => ws.WholesalerSales);
 			modelBuilder.Entity<WholesalerSale>().HasOne(wss => wss.Wholesaler).WithMany(ws => ws.Sales);
 			modelBuilder.Entity<WholesalerSale>().HasOne(wss => wss.Client).WithMany(ws => ws.Purchases);
+			modelBuilder.Entity<WholesalerSale>().HasOne(wss => wss.SoldBeer).WithMany(ws => ws.WholesalerSales);
+			modelBuilder.Entity<WholesalerSale>().HasKey(wss => new { wss.Id, wss.WholesalerId, wss.BeerId, wss.ClientId });
 			#endregion
 			#endregion
 

@@ -3,6 +3,10 @@ using Assessment.Shared;
 using Microsoft.AspNetCore.Mvc;
 using Assessment.Application.Features.WholesalerStocks.Queries.GetWholerStockByBeer;
 using Assessment.Application.Features.WholesalerStocks.Command.UpdateWholesalerStock;
+using Assessment.Application.Features.WholesalerSales.Command.CreateWholesaleSale;
+using System.Collections.Generic;
+using Assessment.Domain.Entities;
+using Assessment.Application.Features.WholesalerStocks.Queries.GetWholesalerStockByBeerDetailed;
 
 namespace Assessment.WebApi.Controllers
 {
@@ -24,9 +28,16 @@ namespace Assessment.WebApi.Controllers
 
 		[HttpPut]
 		[ActionName("UpdateWholesalerBeerStock")]
-		public async Task<ActionResult<Result<int>>> UpdateWholesalerBeerStock(UpdateWholesalerStockCommand query)
+		public async Task<ActionResult<Result<int>>> UpdateWholesalerBeerStock(UpdateWholesalerStockCommand command)
 		{
-			return await _mediator.Send(query);
+			return await _mediator.Send(command);
+		}
+
+		[HttpPost]
+		[ActionName("SellBeerToClient")]
+		public async Task<ActionResult<Result<CreateWholesalerSaleDto>>> SellBeerToClient(CreateWholesalerSaleCommand command)
+		{
+			return await _mediator.Send(command);
 		}
 	}
 }

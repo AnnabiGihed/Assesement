@@ -13,9 +13,18 @@ namespace Assessment.Persistence.Repositories
 			_repository = repository;
 		}
 
-		public async Task<WholesalerStock> GetWholesalerStockByBeer(int wholesalerId, int beerId)
+		public async Task<WholesalerStock> GetWholesalerStocksByBeer(int wholesalerId, int beerId)
 		{
 			return await _repository.Entities.FirstOrDefaultAsync(x => x.BeerId == beerId && x.WholesalerId == wholesalerId);
+		}
+
+		public async Task<WholesalerStock> GetWholesalerStocksByBeerWithInclude(int wholesalerId, int beerId)
+		{
+			var res = await _repository.GetWithInclude(b => b
+				.Include(wss => wss.Beer)
+				.Include(wss => wss.Wholesaler));
+
+			return res.FirstOrDefault(x => x.BeerId == beerId && x.WholesalerId == wholesalerId);
 		}
 	}
 }

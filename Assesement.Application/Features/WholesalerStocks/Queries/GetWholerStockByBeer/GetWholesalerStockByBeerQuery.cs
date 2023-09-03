@@ -38,7 +38,7 @@ namespace Assessment.Application.Features.WholesalerStocks.Queries.GetWholerStoc
 			if (Wholesaler == null)
 				return await Result<GetWholesalerStockByBeerDto>.FailureAsync("Wholesaler Not Found.");
 
-			var WholesalerStock = await _wholesalerStockRepository.GetWholesalerStockByBeer(Wholesaler.Id, Beer.Id);
+			var WholesalerStock = await _wholesalerStockRepository.GetWholesalerStocksByBeer(Wholesaler.Id, Beer.Id);
 
 			if (WholesalerStock == null)
 				return await Result<GetWholesalerStockByBeerDto>.FailureAsync("Wholesaler Stock Not Found.");

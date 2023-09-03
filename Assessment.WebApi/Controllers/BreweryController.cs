@@ -12,6 +12,8 @@ using Assessment.Application.Features.BreweryStocks.Queries.GetBreweryStockByBee
 using Assessment.Application.Features.WholesalerStocks.Queries.GetWholerStockByBeer;
 using Assessment.Application.Features.Breweries.Queries.GetAllBreweriesAndTheirBeers;
 using Assessment.Application.Features.WholesalerStocks.Command.UpdateWholesalerStock;
+using Assessment.Application.Features.WholesalerSales.Command.CreateWholesaleSale;
+using Assessment.Application.Features.WholesalerStocks.Command.CreateWholesalerStock;
 
 namespace Assessment.WebApi.Controllers
 {
@@ -158,8 +160,18 @@ namespace Assessment.WebApi.Controllers
 
 				return UpWSSRes;
 			}
+			else
+			{
+				var CreateWSSComd = new CreateWholesalerStockCommand()
+				{
+					BeerName = command.BeerName,
+					WholesalerName = command.WholesalerName,
+					Quantity = command.Quantity
+				};
 
-			return BreweryStockUpdateRes;
+				var UpWSSRes = await _mediator.Send(CreateWSSComd);
+				return UpWSSRes;
+			}
 		}
 	}
 }

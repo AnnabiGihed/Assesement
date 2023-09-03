@@ -4,6 +4,7 @@ namespace Assessment.Application.Interfaces.Repositories
 {
 	public interface IWholesalerStockRepository
 	{
-		Task<WholesalerStock> GetWholesalerStockByBeer(int wholesalerId, int beerId);
+		Task<WholesalerStock> GetWholesalerStocksByBeer(int wholesalerId, int beerId);
+		Task<WholesalerStock> GetWholesalerStocksByBeerWithInclude(int wholesalerId, int beerId);
 	}
 }
