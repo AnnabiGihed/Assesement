@@ -1,13 +1,17 @@
 ﻿using MediatR;
 using Assessment.Shared;
 using Microsoft.AspNetCore.Mvc;
-using Assessment.Application.Features.Breweries.Queries;
-using Assessment.Application.Features.Breweries.Queries.GetAllBreweries;
-using Assessment.Application.Features.Breweries.Queries.GetAllBreweriesAndTheirBeers;
-using Assessment.Application.Features.Beers.Command.CreateBeer;
-using Assessment.Application.Features.BreweryStocks.Command.CreateBreweryStock;
 using Assessment.Application.Features.Beers.Command.UpdateBeer;
 using Assessment.Application.Features.Beers.Command.DeleteBeer;
+using Assessment.Application.Features.Beers.Command.CreateBeer;
+using Assessment.Application.Features.Breweries.Queries.GetAllBreweries;
+using Assessment.Application.Features.Transations.Command.CreateTransaction;
+using Assessment.Application.Features.BreweryStocks.Command.CreateBreweryStock;
+using Assessment.Application.Features.BreweryStocks.Command.UpdateBreweryStock;
+using Assessment.Application.Features.BreweryStocks.Queries.GetBreweryStockByBeer;
+using Assessment.Application.Features.WholesalerStocks.Queries.GetWholerStockByBeer;
+using Assessment.Application.Features.Breweries.Queries.GetAllBreweriesAndTheirBeers;
+using Assessment.Application.Features.WholesalerStocks.Command.UpdateWholesalerStock;
 
 namespace Assessment.WebApi.Controllers
 {
@@ -89,6 +93,73 @@ namespace Assessment.WebApi.Controllers
 		public async Task<ActionResult<Result<int>>> DeleteBeer(DeleteBeerCommand command)
 		{
 			return await _mediator.Send(command);
+		}
+
+		[HttpPut]
+		[ActionName("UpdateBeerStock")]
+		public async Task<ActionResult<Result<int>>> UpdateBeerStock(UpdateBreweryStockCommand command)
+		{
+			return await _mediator.Send(command);
+		}
+
+		[HttpGet]
+		[ActionName("GetBreweryStockByBeer")]
+		public async Task<ActionResult<Result<GetBreweryStockByBeerDto>>> GetBreweryStockByBeer(GetBreweryStockByBeerQuery query)
+		{
+			return await _mediator.Send(query);
+		}
+
+		[HttpPost]
+		[ActionName("SellBearToWholeSaler")]
+		public async Task<ActionResult<Result<int>>> SellBearToWholeSaler(CreateTransactionCommand command)
+		{
+			//Retrive Brewery Stock
+			var BreweryStockQuery = new GetBreweryStockByBeerQuery() { BeerName = command.BeerName, BreweryName = command.BreweryName };
+			var GetBSQueryRes = await _mediator.Send(BreweryStockQuery);
+
+			if (GetBSQueryRes.Succeeded && GetBSQueryRes.Data == null)
+				return await Result<int>.FailureAsync("Brewery doesn't have stock of this beer");
+			else if(GetBSQueryRes.Succeeded && GetBSQueryRes.Data != null && GetBSQueryRes.Data.Count < command.Quantity)
+				return await Result<int>.FailureAsync("Brewery doesn't have enough stock of this beer");
+
+			//Create The Transaction
+			var TransCreationRes =  await _mediator.Send(command);
+
+			if(!TransCreationRes.Succeeded)
+				return TransCreationRes;
+
+			//Try To Update
+			var UpBrStockComd = new UpdateBreweryStockCommand()
+			{
+				Count = command.Quantity * -1,
+				BeerName = command.BeerName,
+				BreweryName = command.BreweryName,
+			};
+
+			var BreweryStockUpdateRes = await _mediator.Send(UpBrStockComd);
+
+			if (!BreweryStockUpdateRes.Succeeded)
+				return BreweryStockUpdateRes;
+
+			var WholeSalerStockQuery = new GetWholesalerStockByBeerQuery() { BeerName = command.BeerName, WholesalerName = command.WholesalerName };
+
+			var GetWSSRes = await _mediator.Send(WholeSalerStockQuery);
+
+			if(GetWSSRes.Succeeded && GetWSSRes.Data != null)
+			{
+				var UpWSSComd = new UpdateWholesalerStockCommand()
+				{
+					BeerName = command.BeerName,
+					WholesalerName = command.WholesalerName,
+					Quantity = command.Quantity
+				};
+
+				var UpWSSRes = await _mediator.Send(UpWSSComd);
+
+				return UpWSSRes;
+			}
+
+			return BreweryStockUpdateRes;
 		}
 	}
 }

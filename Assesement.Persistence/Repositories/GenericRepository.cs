@@ -1,8 +1,9 @@
-﻿using Assessment.Domain.Common;
+﻿using System.Linq.Expressions;
+using Assessment.Domain.Common;
 using Microsoft.EntityFrameworkCore;
 using Assessment.Persistence.Contexts;
-using Assessment.Application.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore.Query;
+using Assessment.Application.Interfaces.Repositories;
 
 namespace Assessment.Persistence.Repositories
 {
@@ -25,8 +26,7 @@ namespace Assessment.Persistence.Repositories
 
 		public Task UpdateAsync(T entity)
 		{
-			T exist = _dbContext.Set<T>().Find(entity.Id);
-			_dbContext.Entry(exist).CurrentValues.SetValues(entity);
+			_dbContext.Update(entity);
 			return Task.CompletedTask;
 		}
 
@@ -56,6 +56,11 @@ namespace Assessment.Persistence.Repositories
 				result = include(result);
 
 			return result.ToListAsync();
+		}
+
+		public async Task<List<T>> FindByCondition(Expression<Func<T, bool>> expression)
+		{
+			return await _dbContext.Set<T>().Where(expression).ToListAsync();
 		}
 	}
 }

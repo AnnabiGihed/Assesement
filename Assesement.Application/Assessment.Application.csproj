@@ -28,6 +28,6 @@
 
   <ItemGroup>
     <Folder Include="Features\Beers\Queries\" />
-    <Folder Include="Features\BreweryStocks\Queries\" />
+    <Folder Include="Features\Transations\Queries\" />
   </ItemGroup>
 </Project>
