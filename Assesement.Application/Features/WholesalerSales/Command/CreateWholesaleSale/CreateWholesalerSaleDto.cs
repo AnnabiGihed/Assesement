@@ -7,6 +7,7 @@ namespace Assessment.Application.Features.WholesalerSales.Command.CreateWholesal
 	public class CreateWholesalerSaleDto : IMapFrom<WholesalerSale>
 	{
 		public string Client { get; set; }
+		public float Discount { get; set; }
 		public float TotalPrice { get; set; }
 		public string WholeSaler { get; set; }
         public Dictionary<string,int> OrderContent { get; set; }

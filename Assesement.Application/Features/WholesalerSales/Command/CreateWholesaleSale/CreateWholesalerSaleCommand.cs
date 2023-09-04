@@ -95,6 +95,17 @@ namespace Assessment.Application.Features.WholesalerSales.Command.CreateWholesal
 				SalesDto.TotalPrice += order.Value * Beer.Price;
 				OrderTotalDrinks += order.Value;
 			}
+
+			if (OrderTotalDrinks > 10 && OrderTotalDrinks <= 20)
+			{
+				SalesDto.TotalPrice = (float)(SalesDto.TotalPrice - (SalesDto.TotalPrice * 0.10));
+				SalesDto.Discount = 10;
+			}
+			else if (OrderTotalDrinks > 20)
+			{
+				SalesDto.TotalPrice = (float)(SalesDto.TotalPrice - (SalesDto.TotalPrice * 0.20));
+				SalesDto.Discount = 20;
+			}
 			#endregion
 
 			//If It is not a Quote apply changes to the database
