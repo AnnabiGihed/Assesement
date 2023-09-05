@@ -23,6 +23,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assessment.WebApi", "Assessment.WebApi\Assessment.WebApi.csproj", "{568F44FE-657F-4AEF-BAFA-0F1D30BB0589}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit Testing", "Unit Testing", "{2D8D3258-86CA-4548-ACBF-8808799D974D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assessment.UnitTesting", "Assessment.UnitTesting\Assessment.UnitTesting.csproj", "{EDD4028C-9B27-4FCF-AE38-D8AD6793E223}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +57,10 @@ Global
 		{568F44FE-657F-4AEF-BAFA-0F1D30BB0589}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{568F44FE-657F-4AEF-BAFA-0F1D30BB0589}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{568F44FE-657F-4AEF-BAFA-0F1D30BB0589}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDD4028C-9B27-4FCF-AE38-D8AD6793E223}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDD4028C-9B27-4FCF-AE38-D8AD6793E223}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDD4028C-9B27-4FCF-AE38-D8AD6793E223}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDD4028C-9B27-4FCF-AE38-D8AD6793E223}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +72,7 @@ Global
 		{3DFA4D7C-E9F0-4803-A58C-C2C817CD6E83} = {5B7073BD-5718-43E0-9694-F8770DFEE4A4}
 		{461F86CC-6CCF-40C6-AA2D-1DDB9DDE2C9E} = {5B7073BD-5718-43E0-9694-F8770DFEE4A4}
 		{568F44FE-657F-4AEF-BAFA-0F1D30BB0589} = {CBACE176-AF28-4E79-8ED9-95E6A7B7A0AE}
+		{EDD4028C-9B27-4FCF-AE38-D8AD6793E223} = {2D8D3258-86CA-4548-ACBF-8808799D974D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {912531B9-2D15-4D40-ABFF-AA93D6C80F6E}
